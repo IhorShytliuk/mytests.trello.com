@@ -40,7 +40,7 @@ public class BoardPermissionTest extends BrowserFactory {
 
         Board board = new Board();
         board.setName(boardName);
-        board.setPrefs_permissionLevel(permissionsLevel.toString());
+        board.setPermissionLevel(permissionsLevel.toString());
         board = client.boardsService.createBoard(board).execute().body();
 
         BoardsPage boardsPage = new BoardsPage();
@@ -48,10 +48,10 @@ public class BoardPermissionTest extends BrowserFactory {
 
         System.out.println(board);
         System.out.println(boardsPage.getPermissionsLevel());
+        client.boardsService.deleteBoard(board.getId()).execute();
 
         Assert.assertEquals(boardsPage.getPermissionsLevel().toString(), permissionsLevel.toString());
 
-        client.boardsService.deleteBoard(board.getId()).execute();
     }
 
 }

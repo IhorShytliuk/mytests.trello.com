@@ -27,7 +27,7 @@ public class BoardsPage {
 
     private Elem favouriteAddBy = new Elem(By.xpath("//*[@class='board-header-btn js-star-board']"));
     private Elem favouriteDelBy = new Elem(By.xpath("//*[@class='board-header-btn js-star-board board-header-btn-enabled']"));
-    private Elem permissionsLevel = new Elem(By.xpath("//*[@id='permission-level']"));
+    private Elem permissionsLevel = new Elem(By.xpath("//*[@id='permission-level']/span"));
 
     public void open() {
         get(URL + PATH);
@@ -49,7 +49,7 @@ public class BoardsPage {
     }
 
     public PermissionsLevel getPermissionsLevel() {
-        return permissionsLevel.getText().equals("Приватна") ? PermissionsLevel.PRIVATE : PermissionsLevel.PUBLIC;
+        return permissionsLevel.getAttributeValue("class").contains("icon-private") ? PermissionsLevel.PRIVATE : PermissionsLevel.PUBLIC;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.trello.api.models;
 
-import com.trello.api.enums.PermissionsLevel;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +11,12 @@ public class Board {
     private @Setter String name;
     private @Setter String desc;
     private String url;
-    private @Setter String prefs_permissionLevel;
+    //todo     @JsonProperty("prefs_permissionLevel")
+    private String prefs_permissionLevel;
+
+    public void setPermissionLevel(String permissionLevel) {
+        prefs_permissionLevel = permissionLevel;
+    }
 
     @Override
     public String toString() {

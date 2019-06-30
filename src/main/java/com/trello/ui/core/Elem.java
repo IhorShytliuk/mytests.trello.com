@@ -35,6 +35,12 @@ public class Elem {
         return element.getText();
     }
 
+    public String getAttributeValue(String attribuute) {
+        isElementPresent();
+        WebElement element = find();
+        return element.getAttribute(attribuute);
+    }
+
     public void click() {
         isElementPresent();
         find().click();
