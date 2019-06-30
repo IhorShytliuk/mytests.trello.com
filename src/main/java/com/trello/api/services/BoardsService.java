@@ -17,6 +17,9 @@ public interface BoardsService {
     @POST("boards")
     Call<Board> createBoard(@Query("name") String name);
 
+    @POST("boards")
+    Call<Board> createBoard(@Body Board board);
+
     @GET("boards/{id}")
     Call<Board> getBoard(@Path("id") String id);
 

@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.asserts.Assertion;
 
 import static com.trello.ui.core.BrowserFactory.get;
+import static com.trello.ui.core.BrowserFactory.getCurrentUrl;
 import static com.trello.ui.core.Constants.URL;
 
 public class LoginPage {
@@ -17,6 +18,7 @@ public class LoginPage {
     private Elem loginBtn = new Elem(By.xpath("//input[@id='login']"), "Login Btn");
 
     public void login(String email, String pswd) {
+        open();
         emailFld.typeText(email);
         pswdFld.typeText(pswd);
         loginBtn.click();
@@ -32,7 +34,7 @@ public class LoginPage {
         return loginBtn.isElementPresent();
     }
 
-//    public boolean isLoggedOut() {
-//        return driver.getCurrentUrl().contains("logged-out");
-//    }
+    public boolean isLoggedOut() {
+        return getCurrentUrl().contains("logged-out");
+    }
 }

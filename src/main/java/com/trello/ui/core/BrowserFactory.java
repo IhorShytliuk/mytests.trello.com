@@ -34,9 +34,11 @@ public class BrowserFactory {
         driver().get(url);
     }
 
-    public static WebDriverWait getWebDriwerWait(long timeout) {
+    public static WebDriverWait getWebDriverWait(long timeout) {
         return new WebDriverWait(driver(), timeout);
     }
 
-
+    public static String getCurrentUrl() {
+        return driver().getCurrentUrl();
+    }
 }

@@ -13,7 +13,6 @@ public class LoginTest extends BrowserFactory {
         LoginPage loginPage = new LoginPage();
         BoardsPage boardsPage = new BoardsPage();
 
-        loginPage.open();
         loginPage.login("shytliuk.ihor+2@pdffiller.team", "qwe1rty2");
         boardsPage.openBoardByName("qwe");
 

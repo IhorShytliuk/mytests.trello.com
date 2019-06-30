@@ -20,8 +20,7 @@ public class CardActions {
 
     @Test
     public void login() {
-        loginPage.open();
-        loginPage.login("qwe@i.ua", "qwe1rty2");
+        loginPage.login("shytliuk.ihor+2@pdffiller.team", "qwe1rty2");
     }
 
     @Test

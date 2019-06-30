@@ -1,5 +1,6 @@
 package com.trello.ui.pages;
 
+import com.trello.api.enums.PermissionsLevel;
 import com.trello.ui.core.Elem;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,19 +14,20 @@ public class BoardsPage {
 
     private Elem createBoardBtnBy = new Elem(By.xpath("//div[@class='board-tile mod-add']/p"), "CreateBoardBtn");
 
-    private By boardTitleInpBy = By.xpath("//input[@class='subtle-input']");
-    private By createBoardWithNameBtnBy = By.xpath("//button[@class='primary']");
+    private Elem boardTitleInpBy = new Elem(By.xpath("//input[@class='subtle-input']"));
+    private Elem createBoardWithNameBtnBy = new Elem(By.xpath("//button[@class='primary']"));
 
-    private By homeBtnBy = By.xpath("//a[@class='header-btn js-back-menu']");
-    private By showMenuBtnBy = By.xpath("//a[@class='board-header-btn mod-show-menu js-show-sidebar']");
-    private By showMoreBtnBy = By.xpath("//a[@class='board-menu-navigation-item-link js-open-more']");
-    private By closeBoardBtnBy = By.xpath("//a[@class='board-menu-navigation-item-link js-close-board']");
+    private Elem homeBtnBy = new Elem(By.xpath("//a[@class='header-btn js-back-menu']"));
+    private Elem showMenuBtnBy = new Elem(By.xpath("//a[@class='board-header-btn mod-show-menu js-show-sidebar']"));
+    private Elem showMoreBtnBy = new Elem(By.xpath("//a[@class='board-menu-navigation-item-link js-open-more']"));
+    private Elem closeBoardBtnBy = new Elem(By.xpath("//a[@class='board-menu-navigation-item-link js-close-board']"));
 
-    private By closeInpBy = By.xpath("//input[@class='js-confirm full negate']");
-    private By deleteBoardBy = By.xpath("//p[@class='delete-container']/a");
+    private Elem closeInpBy = new Elem(By.xpath("//input[@class='js-confirm full negate']"));
+    private Elem deleteBoardBy = new Elem(By.xpath("//p[@class='delete-container']/a"));
 
-    private By favouriteAddBy = By.xpath("//*[@class='board-header-btn js-star-board']");
-    private By favouriteDelBy = By.xpath("//*[@class='board-header-btn js-star-board board-header-btn-enabled']");
+    private Elem favouriteAddBy = new Elem(By.xpath("//*[@class='board-header-btn js-star-board']"));
+    private Elem favouriteDelBy = new Elem(By.xpath("//*[@class='board-header-btn js-star-board board-header-btn-enabled']"));
+    private Elem permissionsLevel = new Elem(By.xpath("//*[@id='permission-level']"));
 
     public void open() {
         get(URL + PATH);
@@ -36,22 +38,18 @@ public class BoardsPage {
         return createBoardBtnBy.isElementPresent();
     }
 
-//    public boolean isLoggedOut() {
-//        return driver.getCurrentUrl().contains("logged-out");
-//    }
-
-
     public void openBoardByName(String boardName) {
         open();
         Elem board = new Elem(By.xpath("//div[contains(text(),'" + boardName + "')]/ancestor::a"));
         board.click();
     }
 
-    //todo
-    public void openBoardByUrl(String boardName) {
-        open();
-        Elem board = new Elem(By.xpath("//div[contains(text(),'" + boardName + "')]/ancestor::a"));
-        board.click();
+    public void openBoardByUrl(String url) {
+        get(url);
+    }
+
+    public PermissionsLevel getPermissionsLevel() {
+        return permissionsLevel.getText().equals("Приватна") ? PermissionsLevel.PRIVATE : PermissionsLevel.PUBLIC;
     }
 
 }
