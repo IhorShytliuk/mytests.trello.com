@@ -5,14 +5,20 @@ import com.trello.api.models.Board;
 import com.trello.api.models.Card;
 import com.trello.api.models.Label;
 import com.trello.api.models.TList;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+@Feature("Api tests")
 public class TryTrelloApi {
 
     TrelloRestClient client = new TrelloRestClient();
 
+    @Story("Board story")
+    @Step("Board test")
     @Test
     public void testBoard() throws IOException {
         Board newBoard = new Board();
@@ -31,6 +37,7 @@ public class TryTrelloApi {
         client.boardsService.deleteBoard(createdBoard.getId()).execute();
     }
 
+    @Step("List test")
     @Test
     public void testTList() throws IOException {
         TList newTList = new TList();
@@ -50,7 +57,6 @@ public class TryTrelloApi {
         createdTList.setClosed(true);
         listInfo = client.listsService.updateList(createdTList.getId(), createdTList).execute().body();
         System.out.println(listInfo);
-
     }
 
     @Test

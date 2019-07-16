@@ -3,13 +3,11 @@ package com.trello.ui.pages;
 import com.trello.ui.core.Elem;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.asserts.Assertion;
 
 import static com.trello.ui.core.BrowserFactory.get;
-import static com.trello.ui.core.BrowserFactory.getCurrentUrl;
 import static com.trello.ui.core.Constants.URL;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 
     public static final String PATH = "login";
 
@@ -34,7 +32,7 @@ public class LoginPage {
         return loginBtn.isElementPresent();
     }
 
-    public boolean isLoggedOut() {
-        return getCurrentUrl().contains("logged-out");
+    public boolean isLogined() {
+        return new Elem(By.xpath("//*[@class='content-all-boards']")).isElementPresent();
     }
 }

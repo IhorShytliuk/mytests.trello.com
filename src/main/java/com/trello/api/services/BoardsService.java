@@ -23,6 +23,9 @@ public interface BoardsService {
     @GET("boards/{id}")
     Call<Board> getBoard(@Path("id") String id);
 
+    @GET("boards/{id}/lists")
+    Call<List<TList>> getBoardLists(@Path("id") String id);
+
     @PUT("boards/{id}")
     Call<Board> updateBoard(@Path("id") String id, @Body Board board);
 

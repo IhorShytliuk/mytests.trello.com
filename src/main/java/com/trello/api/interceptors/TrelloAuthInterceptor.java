@@ -27,6 +27,11 @@ public class TrelloAuthInterceptor implements Interceptor {
                 .url(url);
 
         Request request = requestBuilder.build();
+
+//        System.out.println("Cookies: " + request.headers("Set-Cookie"));
+        System.out.println("Url: " + request.url());
+        System.out.println("Body: " + request.body());
+
         return chain.proceed(request);
     }
 }
